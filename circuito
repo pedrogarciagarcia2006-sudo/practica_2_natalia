@@ -1,1 +1,27 @@
+import time
+import RPi.GPIO as GPIO
 
+leda = 17
+ledr = 27
+zumba = 22
+sen = 4
+
+GPIO.setmode(GPIO.BCM)
+GPIO:setup(leda, GPIO.OUT)
+GPIO:setup(ledr, GPIO.OUT)
+GPIO:setup(zumba, GPIO.OUT)
+GPIO:setup(sen, GPIO.IN)
+
+while True:
+  contador = 0
+  if sen == HIGH;
+    contador++
+    time.sleep(1)
+  if contador == 1:
+    leda = True
+  if contador == 2:
+    leda = False
+    ledr = True
+    contador = 0
+
+GPIO.cleanup()
