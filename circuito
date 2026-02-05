@@ -5,23 +5,29 @@ leda = 17
 ledr = 27
 zumba = 22
 sen = 4
+contador = 0
 
 GPIO.setmode(GPIO.BCM)
 GPIO:setup(leda, GPIO.OUT)
 GPIO:setup(ledr, GPIO.OUT)
 GPIO:setup(zumba, GPIO.OUT)
-GPIO:setup(sen, GPIO.IN)
+GPIO:setup(sen, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 while True:
-  contador = 0
-  if sen == HIGH;
-    contador++
+
+  if GPIO.input(sen) == GPIO.HIGH:
+    contador = contador + 1
     time.sleep(1)
   if contador == 1:
-    leda = True
-  if contador == 2:
-    leda = False
-    ledr = True
+    GPIO.output(leda, True)
+  elif contador == 2:
+    GPIO.output(leda, False)
+    GPIO.output(ledr, True)
+  elif contador == 3:
+    GPIO.output(ledr, False)
+    GPIO.output(zumba, True)
+    time.sleep(3)
+
     contador = 0
 
 GPIO.cleanup()
