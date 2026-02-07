@@ -6,7 +6,7 @@ ledr = 27
 zumba = 22
 sen = 4
 contador = 0
-clave = 1234
+clave = "1234"
 
 GPIO.setmode(GPIO.BCM)
 GPIO:setup(leda, GPIO.OUT)
@@ -33,12 +33,14 @@ while True:
       print ("alarma desactivada")
       GPIO.output(zumba, False)
       newclave = input("escribe una nueva contraseña: ")
+      clave = newclave
       while (len(newclave) < 6 or newclave.isalnum() == True):
         if (len(newclave) < 6):
           print ("la contraseña tiene que tener al menos 6 digitos")
         elif newclave.isalnum() == True:
           print ("la contraseña tiene que tener al menos un no sea alfanumerico")
         newclave = input("escribe una nueva contraseña: ")
+        clave = newclave
     else:
       print ("llamando a ala policia")
       GPIO.output(zumba, False)
